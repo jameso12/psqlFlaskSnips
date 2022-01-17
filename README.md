@@ -6,7 +6,9 @@ This repo is meant to be a place where I can learn how to set up a connection to
 - add a row to that table
 - modify that row
 - delete that row
-
+## Remember
+You must use your **OWN** database URI for this to work. I placed a variable which shows you how your URI could look like. If you do
+not know how to make your URI, look at the [SQLALCHEMY docs](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) for more help.
 ## How I did it
 I followed along a [tutorial](https://www.compose.com/articles/using-postgresql-through-sqlalchemy/) that explained how to use sqlalchemy
 with postgresql. In this snip I choose to go with the raw commands (I think that what the approach was called) and I had succes at making 

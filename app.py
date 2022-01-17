@@ -1,7 +1,7 @@
 from distutils import command
 from sqlalchemy import create_engine
+# This is where my database's URI was, you do not need to import this
 from notes import MY_DB_STRING
-
 DB_STRING_FORMAT = "dbengine://user/password@connection:port/database_name"
 # place holder
 DB_STRING = MY_DB_STRING
