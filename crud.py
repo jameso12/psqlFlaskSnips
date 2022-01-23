@@ -1,3 +1,4 @@
+from sqlite3 import connect
 from sqlalchemy import create_engine
 from notes import MY_DB_STRING
 DB_STRING_FORMAT = "dbengine://user/password@connection:port/database_name"
@@ -14,7 +15,7 @@ class DB:
     def __init__(self):
         """This function creates the connection to the database and installs the necessary extension to it."""
         # Create connection
-        self.db = create_engine(DB_STRING)
+        self.connectDB()
         # Install extension
         self.db.execute(self.installExtensionCMD)
         # TODO Create the users table
@@ -24,6 +25,9 @@ id uuid PRIMARY KEY DEFAULT uuid_generate_v4 (),
 username VARCHAR(20) UNIQUE NOT NULL,
 password VARCHAR(20) NOT NULL
 )""")
+
+    def connectDB(self):
+        self.db = create_engine(DB_STRING)
     # Functions with commun table interactions
     def createRow(self,*, table, columns, values):
         """This function will add a row to a table."""
@@ -42,9 +46,15 @@ password VARCHAR(20) NOT NULL
         return self.db.execute(f"DELETE FROM {table} WHERE {conditions}")
 
 # experimenting:
-myDB = DB()
-myDB.createRow(table='users', columns="username, password", values="'james', '1234'")
-myDB.createRow(table='users', columns="username, password", values="'jams', '1232'")
-for r in myDB.getRow(columns="username, password",conditions="1=1", table="users" ):  
-    print(r[0]) # aparently this is a tuple, or at least an indexed iterable
+# myDB = DB()
+# myDB.createRow(table='users', columns="username, password", values="'james', '1234'")
+# myDB.createRow(table='users', columns="username, password", values="'jams', '1232'")
+# for r in myDB.getRow(columns="username, password",conditions="1=1", table="users" ):  
+#     print(r[0]) # aparently this is a tuple, or at least an indexed iterable
+
+myDB = create_engine(MY_DB_STRING)
+print(myDB.execute("select username from om;").fetchall())
+# fetch all create an array of tuples
+# fetchone gets a tuple
+
     
