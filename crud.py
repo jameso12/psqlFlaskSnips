@@ -53,7 +53,7 @@ password VARCHAR(20) NOT NULL
 #     print(r[0]) # aparently this is a tuple, or at least an indexed iterable
 
 myDB = create_engine(MY_DB_STRING)
-print(myDB.execute("select * from om where username='tipo';").fetchone()) 
+print(myDB.execute("select password from om;").fetchone()) 
 # fetch all create an array of tuples
 # fetchone gets a tuple
 # if fetchall has fails condition empty array
